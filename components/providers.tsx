@@ -15,13 +15,13 @@ import {
   trustWallet,
   ledgerWallet
 } from '@rainbow-me/rainbowkit/wallets'
-import { configureChains, createConfig, WagmiConfig } from 'wagmi'
+import { configureChains, createConfig, mainnet, WagmiConfig } from 'wagmi'
 
 import { publicProvider } from 'wagmi/providers/public'
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    // mainnet,
+    mainnet,
     // polygon,
     // ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [goerli, mumbai] : []),
     {
