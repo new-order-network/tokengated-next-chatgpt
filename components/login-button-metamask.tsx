@@ -48,18 +48,15 @@ export function LoginButtonMetamask({
         if (userAddress && isConnected) {
           try {
             // 1. Get a nonce from the server
-            const nonceResponse = await fetch(
-              `https://oqayrlcsbmgsydpkolgg.supabase.co/api/web3auth/nonce`,
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  address: userAddress
-                })
-              }
-            )
+            const nonceResponse = await fetch(`/api/web3auth/nonce`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                address: userAddress
+              })
+            })
 
             const {
               user: [user]
@@ -73,20 +70,17 @@ export function LoginButtonMetamask({
             })
 
             // // 3. Send the signed message to our API
-            const response = await fetch(
-              `https://oqayrlcsbmgsydpkolgg.supabase.co/api/web3auth/login`,
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                  address: userAddress,
-                  signedMessage: signedMessage,
-                  nonce: user.auth.genNonce
-                })
-              }
-            )
+            const response = await fetch(`/api/web3auth/login`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                address: userAddress,
+                signedMessage: signedMessage,
+                nonce: user.auth.genNonce
+              })
+            })
 
             // Handle the response from the API
             if (response.ok) {
