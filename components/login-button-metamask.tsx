@@ -47,51 +47,51 @@ export function LoginButtonMetamask({
 
         if (userAddress && isConnected) {
           try {
-            //   // 1. Get a nonce from the server
-            //   const nonceResponse = await fetch(`/api/web3auth/nonce`, {
-            //     method: 'POST',
-            //     headers: {
-            //       'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //       address: userAddress
-            //     })
-            //   })
+            // 1. Get a nonce from the server
+            const nonceResponse = await fetch(`/api/web3auth/nonce`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                address: userAddress
+              })
+            })
 
-            //   const {
-            //     user: [user]
-            //   } = await nonceResponse.json()
+            const {
+              user: [user]
+            } = await nonceResponse.json()
 
-            //   // 2. Ask the user to sign a message
-            //   const message =
-            //     process.env.NEXT_PUBLIC_WEB3AUTH_MESSAGE + user.auth.genNonce
-            //   const signedMessage = await signMessage({
-            //     message: message
-            //   })
+            // 2. Ask the user to sign a message
+            const message =
+              process.env.NEXT_PUBLIC_WEB3AUTH_MESSAGE + user.auth.genNonce
+            const signedMessage = await signMessage({
+              message: message
+            })
 
-            //   // // 3. Send the signed message to our API
-            //   const response = await fetch(`/api/web3auth/login`, {
-            //     method: 'POST',
-            //     headers: {
-            //       'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify({
-            //       address: userAddress,
-            //       signedMessage: signedMessage,
-            //       nonce: user.auth.genNonce
-            //     })
-            //   })
+            // // 3. Send the signed message to our API
+            const response = await fetch(`/api/web3auth/login`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                address: userAddress,
+                signedMessage: signedMessage,
+                nonce: user.auth.genNonce
+              })
+            })
 
             // Handle the response from the API
-            // if (response.ok) {
-            // The verification was successful
-            console.log('Verification successful!')
-            setIsAuthenticated(true)
-            // } else {
-            //   // The verification failed
-            //   console.error('Verification failed!')
-            //   setIsAuthenticated(false)
-            // }
+            if (response.ok) {
+              // The verification was successful
+              console.log('Verification successful!')
+              setIsAuthenticated(true)
+            } else {
+              // The verification failed
+              console.error('Verification failed!')
+              setIsAuthenticated(false)
+            }
           } catch (err) {
             console.error('An error occurred:', err)
           } finally {
