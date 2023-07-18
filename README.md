@@ -3,6 +3,7 @@
   <h1 align="center">Ocean Protocol Tokengated Chatbot</h1>
 </a>
 
+
 <p align="center">
   A Web3 powered, Ocean Protocol tokengated, open-source AI chatbot app template built with Next.js, the Vercel AI SDK, OpenAI, and Supabase.
 </p>
