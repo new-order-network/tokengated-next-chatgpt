@@ -68,7 +68,6 @@ export function LoginButtonMetamask({
             const signedMessage = await signMessage({
               message: message
             })
-
             // // 3. Send the signed message to our API
             const response = await fetch(`/api/web3auth/login`, {
               method: 'POST',
