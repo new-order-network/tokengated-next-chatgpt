@@ -72,13 +72,18 @@ export function Chat({
 
       const data = await response.json()
 
+      const userMessage: Message = {
+        id: data.id,
+        role: 'user',
+        content: input
+      }
       const newMessage: Message = {
         id: data.id,
         role: 'assistant',
         content: data
       }
 
-      setMessages(prevMessages => [...prevMessages, newMessage])
+      setMessages(prevMessages => [...prevMessages, userMessage, newMessage])
       setIsLoading(false)
       setInput('')
     } catch (error) {
