@@ -56,7 +56,7 @@ export function Chat({
       }
 
       const response = await fetch(
-        'http://157.245.65.240:8000/get_last_user_message/',
+        'https://api.kssoftware.xyz/get_last_user_message/',
         {
           method: 'POST',
           headers: {
